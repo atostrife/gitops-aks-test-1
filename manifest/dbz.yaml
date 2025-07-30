@@ -26,27 +26,3 @@ spec:
     targetPort: 80
   selector:
     run: dbz
-
----
-
-kind: Ingress
-metadata:
-  name: dbz-ingress
-  namespace: dbz-ns
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: dbz.oecd.org
-    http:
-      paths:
-      - backend:
-          service:
-            name: dbz
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
-  tls:
-  - hosts:
-    - dbz.oecd.org
-    secretName: oecd-wildcard-internal-tls
