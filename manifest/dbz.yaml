@@ -47,7 +47,7 @@ spec:
             port:
               number: 80
         path: /
-        pathType: Exact
+        pathType: Prefix
   tls:
   - hosts:
     - dbz.oecd.org
