@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: dbz-ns
+  labels:
+    run: dbz
+  name: dbz
+spec:
+  containers:
+  - image: atostrife/dbz
+    name: dbz
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: dbz-ns
+  labels:
+    run: dbz
+  name: dbz
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: dbz
