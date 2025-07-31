@@ -1,1 +1,11 @@
-re
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: renard-ns
+  labels:
+    run: renard
+  name: renard
+spec:
+  containers:
+  - image: atostrife/renard:1
+    name: renard
