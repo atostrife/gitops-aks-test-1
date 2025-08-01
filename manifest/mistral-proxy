@@ -34,4 +34,29 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-  type: ClusterIP 
+  type: ClusterIP
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mistral-proxy-ingress
+  namespace: mistral-ns
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: mistral-proxy.oecd.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: mistral-proxy
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - mistral-proxy.oecd.org
+    secretName: oecd-wildcard-internal-tls
