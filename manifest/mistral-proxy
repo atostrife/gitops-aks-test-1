@@ -1,0 +1,37 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mistral-proxy
+  namespace: mistral-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:  mistral-proxy
+  template:
+    metadata:
+      labels:
+        app:  mistral-proxy
+    spec:
+      containers:
+      - name: mistral-proxy
+        image: atostrife/mistral-proxy:1
+      imagePullSecrets:
+      - name: mistralproxy-secret
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mistral-proxy
+  namespace: mistral-ns
+spec:
+  selector:
+    app: mistral-proxy
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP 
