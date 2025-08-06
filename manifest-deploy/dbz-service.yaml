@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: dbz-ns
+  labels:
+    run: dbz
+  name: dbz
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: dbz
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  creationTimestamp: null
+  name: dbz-ingress
+  namespace: dbz-ns
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: dbz.oecd.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: dbz
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - dbz.oecd.org
+    secretName: oecd-wildcard-internal-tls
