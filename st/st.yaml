@@ -9,3 +9,45 @@ spec:
   containers:
   - image: atostrife/dbz:55
     name: dbz
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: workspace22-st
+  labels:
+    run: dbz
+  name: dbz
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: dbz
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dbz-ingress
+  namespace: workspace22-st
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: dbz.oecd.org
+    http:
+      paths:
+      - backend:
+          service:
+            name: dbz
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - dbz.oecd.org
+    secretName: oecd-wildcard-internal-tls
