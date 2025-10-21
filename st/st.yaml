@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: workspace22-st
+  labels:
+    run: dbz
+  name: dbz
+spec:
+  containers:
+  - image: atostrife/dbz:55
+    name: dbz
