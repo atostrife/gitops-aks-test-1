@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  namespace: workspace01-st
+  namespace: workspace02-st
   labels:
-    run: dbz
-  name: dbz
+    run: workspace02
+  name: workspace02
 spec:
   containers:
   - image: atostrife/dbz:55
-    name: dbz
+    name: workspace02
 
 ---
 
@@ -17,37 +17,37 @@ kind: Service
 metadata:
   namespace: workspace01-st
   labels:
-    run: dbz
-  name: dbz
+    run: workspace02
+  name: workspace02
 spec:
   ports:
   - port: 80
     protocol: TCP
     targetPort: 80
   selector:
-    run: dbz
+    run: workspace02
 
 ---
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: dbz-ingress
-  namespace: workspace01-st
+  name: workspace02-ingress-st
+  namespace: workspace02-st
 spec:
   ingressClassName: nginx
   rules:
-  - host: dbz.oecd.org
+  - host: workspace02-st.oecd.org
     http:
       paths:
       - backend:
           service:
-            name: dbz
+            name: workspace02
             port:
               number: 80
         path: /
         pathType: Prefix
   tls:
   - hosts:
-    - dbz.oecd.org
+    - workspace02.oecd.org
     secretName: oecd-wildcard-internal-tls
