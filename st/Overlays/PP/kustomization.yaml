@@ -1,9 +1,10 @@
 ﻿apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization 
 resources:
-- ../../base
+- ../../Base
 
 nameSuffix: -pp
+namespace: workspace007-pp
 
 #patches:
 #- path: replica_count.yaml
