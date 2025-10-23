@@ -4,6 +4,7 @@ resources:
 - ../../base
 
 nameSuffix: -pp
+namespace workspace007--pp
 
 #patches:
 #- path: replica_count.yaml
