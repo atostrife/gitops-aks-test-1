@@ -16,10 +16,10 @@ patches:
       kind: Deployment
       name: workspace007
     patch: |
-      - op: add
+      - op: replace
         path: /spec/selector/matchLabels/app
         value: workspace007-prod
-      - op: add
+      - op: replace
         path: /spec/template/metadata/labels/app
         value: workspace007-prod
 
