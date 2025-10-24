@@ -9,17 +9,3 @@ namespace: workspace007-prod
 #patches:
 #- path: replica_count.yaml
 
-patches:
-  - target:
-      group: apps
-      version: v1
-      kind: Deployment
-      name: workspace007
-    patch: |
-      - op: replace
-        path: /spec/selector/matchLabels/app
-        value: workspace007-prod
-      - op: replace
-        path: /spec/template/metadata/labels/app
-        value: workspace007-prod
-
