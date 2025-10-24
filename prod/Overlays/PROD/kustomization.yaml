@@ -17,9 +17,6 @@ patches:
       name: workspace007
     patch: |
       - op: add
-        path: /metadata/labels/app
-        value: workspace007-prod
-      - op: add
         path: /spec/selector/matchLabels/app
         value: workspace007-prod
       - op: add
