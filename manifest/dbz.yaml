@@ -37,7 +37,7 @@ metadata:
   namespace: dbz-ns
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    external-dns.alpha.kubernetes.io/hostname: argocd.syntheticpod.xyz
+    external-dns.alpha.kubernetes.io/hostname: dbz.syntheticpod.xyz
 spec:
   ingressClassName: nginx
   rules:
