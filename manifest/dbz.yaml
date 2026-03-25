@@ -35,6 +35,8 @@ metadata:
   creationTimestamp: null
   name: dbz-ingress
   namespace: dbz-ns
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
   rules:
