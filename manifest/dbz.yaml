@@ -37,10 +37,11 @@ metadata:
   namespace: dbz-ns
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    external-dns.alpha.kubernetes.io/hostname: argocd.syntheticpod.xyz
 spec:
   ingressClassName: nginx
   rules:
-  - host: dbz.oecd.org
+  - host: dbz.syntheticpod.xyz
     http:
       paths:
       - backend:
@@ -52,5 +53,5 @@ spec:
         pathType: Prefix
   tls:
   - hosts:
-    - dbz.oecd.org
+    - dbz.syntheticpod.xyz
     secretName: oecd-wildcard-internal-tls
