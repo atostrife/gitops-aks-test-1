@@ -39,7 +39,8 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     external-dns.alpha.kubernetes.io/hostname: dbz.syntheticpod.xyz
 spec:
-  ingressClassName: webapprouting.kubernetes.azure.com
+  #ingressClassName: webapprouting.kubernetes.azure.com
+  ingressClassName: nginx
   rules:
   - host: dbz.syntheticpod.xyz
     http:
